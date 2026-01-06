@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi primer bot</title>
+  <link rel="stylesheet" href="pagina.css"> 
+</head>
+
+<body>
+  <h1>Hola, soy Rudi</h1>
+  <p>Este es mi primer proyecto real</p>
+<div id="container3D"></div>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<model-viewer src="hitem3d.glb"
+              alt="Mi bot 3D"
+              style="width: 600px; height: 450px; margin: 20px auto; display: block;"
+              camera-controls
+              auto-rotate
+              ar
+              exposure="1">
+</model-viewer>
+
+
+
+<div id="chat">
+<div id="header">RuBOT</div>
+<div id="mensajes"></div>
+<div id="hola">
+    <input id="texto" placeholder="Escribe algo">
+    <button id="btn">Enviar</button>
+</div>
+</div>
+<button class="abre" id="chatBox">abre</button>
+
+<script src="pagina.js"></script>
+
+
+</body>
+</html>
