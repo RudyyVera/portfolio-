@@ -141,7 +141,7 @@ function speakText(text) {
   utt.pitch = config.voicePitch;
 
   const voices = window.speechSynthesis.getVoices();
-  const voice = voices.find(v => v.lang.startsWith("es") && /Google|fem|Female|Mujer/i.test(v.name))
+  const voice = voices.find(v => v.lang.startsWith("es") && /Google|Male|Hombre|man/i.test(v.name))
     || voices.find(v => v.lang.startsWith("es"))
     || voices[0];
   if (voice) utt.voice = voice;
