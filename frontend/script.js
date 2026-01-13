@@ -16,7 +16,7 @@ const config = {
   voicePitch: 1.2,
   typeSpeed: 30,
   speakReplies: true,
-  apiUrl: "http://localhost:8787/chat", // Backend URL
+  apiUrl: "/api/chat", // Funciona en localhost y Vercel
   model: "openai/gpt-4o-mini",
   historyLimit: 10,
 };
