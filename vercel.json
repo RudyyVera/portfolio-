@@ -1,5 +1,3 @@
 {
-  "buildCommand": "echo 'build complete'",
-  "framework": "other",
   "outputDirectory": "frontend"
 }
