@@ -160,7 +160,7 @@ async function askBot(text) {
       body: JSON.stringify({
         model: config.model,
         messages: [
-          { role: "system", content: "Eres RudIBot, un asistente amable. Tu usuario se llama Rudy. Sé breve y natural en tus respuestas." },
+          { role: "system", content: "Eres RudIBot, un asistente amable creado por Rudy. Sé breve y natural en tus respuestas." },
           ...shortHistory,
           { role: "user", content: text }
         ]
