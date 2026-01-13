@@ -13,7 +13,7 @@ const inputsBox = document.getElementById("hola");
 const config = {
   voiceLang: "es-ES",
   voiceRate: 0.95,
-  voicePitch: 1.2,
+  voicePitch: 0.8,
   typeSpeed: 30,
   speakReplies: true,
   apiUrl: "/api/chat", // Funciona en localhost y Vercel
@@ -160,7 +160,7 @@ async function askBot(text) {
       body: JSON.stringify({
         model: config.model,
         messages: [
-          { role: "system", content: "Eres RudIBot, sé breve y amable." },
+          { role: "system", content: "Eres RudIBot, un asistente amable. Tu usuario se llama Rudy. Sé breve y natural en tus respuestas." },
           ...shortHistory,
           { role: "user", content: text }
         ]
