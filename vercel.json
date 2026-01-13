@@ -1,5 +1,5 @@
 {
   "buildCommand": "echo 'build complete'",
   "framework": "other",
-  "public": "frontend"
+  "outputDirectory": "frontend"
 }
