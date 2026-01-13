@@ -1,4 +1,8 @@
 {
+  "name": "rudibot-chatbot-3d",
+  "version": "1.0.0",
+  "description": "Chatbot 3D interactivo con IA, reconocimiento de voz y modelo 3D",
+  "main": "backend/server.js",
   "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
@@ -8,6 +12,15 @@
     "three": "^0.182.0"
   },
   "scripts": {
-    "start": "node -r dotenv/config server.js"
+    "start": "node backend/server.js",
+    "dev": "node -r dotenv/config backend/server.js",
+    "server": "cd backend && node -r dotenv/config server.js"
+  },
+  "keywords": ["chatbot", "3D", "AI", "voice", "interactive"],
+  "author": "Rudy Vera",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RudyyVera/chatbot-3D.git"
   }
 }
