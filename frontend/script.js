@@ -22,6 +22,7 @@ const config = {
 };
 
 let historyChat = [];
+let greetedOnce = false;
 
 function createMicButton() {
   const btn = document.createElement("button");
@@ -86,6 +87,13 @@ function openChat() {
   chatWindow.style.display = "flex";
   messageInput.focus();
   chatButton.classList.add("cerrar-modo");
+
+  if (!greetedOnce) {
+    greetedOnce = true;
+    setTimeout(() => {
+      addBotMessage("Hola, soy RudIBot. ¿En qué te ayudo?");
+    }, 120);
+  }
 }
 
 function closeChat() {
@@ -149,7 +157,38 @@ function speakText(text) {
   window.speechSynthesis.speak(utt);
 }
 
+// ========== RATE LIMITING FRONTEND ==========
+const chatRateLimit = {
+  maxRequests: 10,           // máximo de requests
+  timeWindow: 60000,         // por minuto (60 segundos)
+  requests: [],
+  
+  isLimited() {
+    const now = Date.now();
+    this.requests = this.requests.filter(time => now - time < this.timeWindow);
+    
+    if (this.requests.length >= this.maxRequests) {
+      return true;
+    }
+    
+    this.requests.push(now);
+    return false;
+  }
+};
+
 async function askBot(text) {
+  if (!text || text.trim().length === 0) {
+    return "Por favor escribe un mensaje.";
+  }
+  
+  if (text.length > 1000) {
+    return "Tu mensaje es demasiado largo (máximo 1000 caracteres).";
+  }
+  
+  if (chatRateLimit.isLimited()) {
+    return "Estás enviando muchos mensajes. Por favor espera un minuto.";
+  }
+  
   try {
     historyChat.push({ role: "user", content: text });
     const shortHistory = historyChat.slice(-config.historyLimit);
@@ -168,11 +207,23 @@ async function askBot(text) {
     });
 
     const data = await res.json();
+    
+    if (!res.ok) {
+      if (res.status === 429) {
+        return "🚫 Demasiadas solicitudes. El servidor está protegido contra spam. Intenta en unos minutos.";
+      }
+      if (res.status === 504) {
+        return "⏱️ La solicitud tardó demasiado. Intenta de nuevo.";
+      }
+      return data?.error?.message || "Error en la solicitud";
+    }
+    
     const reply = data?.choices?.[0]?.message?.content || data?.error?.message || "No pude responder";
     historyChat.push({ role: "assistant", content: reply });
     return reply;
   } catch (err) {
-    return "Error de conexión: " + err.message;
+    console.error("Bot error:", err);
+    return "❌ Error de conexión. Verifica tu internet e intenta de nuevo.";
   }
 }
 
@@ -203,7 +254,63 @@ messageInput.onkeypress = (e) => {
 };
 
 window.addEventListener("load", () => {
-  setTimeout(() => {
-    addBotMessage("Hola, soy RudIBot. ¿En qué te ayudo?");
-  }, 100);
+  // Sin saludo automático; solo cuando se abre el chat por primera vez.
+  
+  // Inicializar tema
+  initTheme();
+  initExperienceObserver();
+  
+  // Inicializar efectos de bento cards
 });
+
+// ========== FUNCIONALIDAD DE TEMA CLARO/OSCURO ==========
+
+function initTheme() {
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeIcon = themeToggle.querySelector("i");
+  
+  // Cargar tema guardado o usar tema oscuro por defecto
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  applyTheme(savedTheme);
+  
+  // Manejar clic en el botón
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.body.classList.contains("light-theme") ? "light" : "dark";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  });
+  
+  function applyTheme(theme) {
+    if (theme === "light") {
+      document.body.classList.add("light-theme");
+      themeIcon.classList.remove("fa-sun");
+      themeIcon.classList.add("fa-moon");
+    } else {
+      document.body.classList.remove("light-theme");
+      themeIcon.classList.remove("fa-moon");
+      themeIcon.classList.add("fa-sun");
+    }
+  }
+}
+
+// ========== ANIMACIÓN EXPERIENCIA AL HACER SCROLL ==========
+function initExperienceObserver() {
+  const items = document.querySelectorAll('.exp-item');
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  items.forEach((item, idx) => {
+    item.style.transitionDelay = `${idx * 120}ms`;
+    observer.observe(item);
+  });
+}
+
