@@ -1,0 +1,12 @@
+# NO SUBIR: Variables de entorno con la API key
+.env
+
+# NO SUBIR: Dependencias instaladas localmente (Vercel las instala automáticamente)
+node_modules/
+
+# NO SUBIR: Archivos de configuración del editor (opcional, pero recomendable)
+.vscode/
+
+# NO SUBIR: Archivos de log y caché
+*.log
+.DS_Store

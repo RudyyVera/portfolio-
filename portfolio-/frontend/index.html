@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rudy Vera - Desarrollador Web</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive-patch.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Import map para Three.js -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Mouse spotlight effect -->
+  <div class="mouse-spotlight"></div>
+  
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-brand">
+        <img src="assets/avataaars.png" alt="Avatar" class="nav-avatar">
+        <span>Rudy Vera</span>
+      </div>
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#sobre-mi">Sobre Mí</a>
+        <a href="#skills">Tecnologías</a>
+        <a href="#contacto">Contacto</a>
+        <select id="lang-selector" class="lang-selector" aria-label="Cambiar idioma">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+        </select>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+          <i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="hero">
+    <div class="hero-background">
+      <div class="wave-effect"></div>
+      <div class="wave-effect wave-2"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="vertical-line"></div>
+        <h1>Hola, soy <span class="gradient-text">Rudy Vera</span></h1>
+        <p class="hero-subtitle">Desarrollador Web & Creador de Experiencias Digitales</p>
+        <div class="hero-buttons">
+          <a href="https://github.com/RudyyVera" target="_blank" class="social-icon-btn github" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/rudi-alonso-vera-2733a22b2/" target="_blank" class="social-icon-btn linkedin" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="setup-container">
+          <div id="laptop3D">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #a855f7; font-size: 1.2rem; text-align: center; z-index: 10;">
+              <div style="animation: pulse 2s infinite;">⚡ Cargando modelo 3D...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Proyectos -->
+  <section id="proyectos" class="proyectos">
+    <div class="container">
+      <h2 class="section-title">Proyectos Destacados</h2>
+      <p class="section-description">Explora mis últimos trabajos en desarrollo web</p>
+      
+      <div class="projects-bento">
+        
+        <!-- Proyecto 1: RudIBot -->
+        <div class="project-bento-card">
+          <div class="project-preview">
+            <img src="assets/bot.png" alt="RudIBot Preview">
+            <div class="project-overlay">
+              <i class="fas fa-external-link-alt"></i>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>RudIBot</h3>
+            <p>Chatbot inteligente con reconocimiento de voz y respuestas en tiempo real usando IA avanzada.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag js" title="JavaScript"><i class="fab fa-js"></i></span>
+              <span class="tech-tag node" title="Node.js"><i class="fab fa-node"></i></span>
+              <span class="tech-tag express" title="Express"><i class="fa-solid fa-server"></i></span>
+              <span class="tech-tag vercel" title="Vercel"><i class="fas fa-rocket"></i></span>
+            </div>
+            <div class="project-actions">
+              <a href="https://rudibot-chat.vercel.app/" target="_blank" class="project-action-btn demo">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Abrir Demo</span>
+              </a>
+              <a href="https://github.com/RudyyVera" target="_blank" class="project-action-btn github">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 2: Próximamente -->
+        <div class="project-bento-card coming-soon">
+          <div class="project-preview coming">
+            <div class="coming-content">
+              <i class="fas fa-code"></i>
+              <span>Coming Soon</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>E-comm  erce</h3>
+            <p>Estoy trabajando en algo increíble. Mantente atento para ver más detalles pronto.</p>
+            <div class="project-tech-tags">
+              <span class="tech-tag react" title="React"><i class="fab fa-react"></i></span>
+              <span class="tech-tag ts" title="TypeScript"><i class="fab fa-square-js"></i></span>
+              <span class="tech-tag tailwind" title="Tailwind CSS"><i class="fas fa-wind"></i></span>
+            </div>
+            <div class="project-actions">
+              <button class="project-action-btn disabled" disabled>
+                <i class="fas fa-clock"></i>
+                <span>En Desarrollo</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Experiencia -->
+  <section id="experiencia" class="experiencia">
+    <div class="container">
+      <h2 class="section-title">Experiencia</h2>
+      <p class="section-subtitle">Lo que he construido hasta ahora</p>
+
+      <div class="timeline">
+        <div class="timeline-line"></div>
+
+        <div class="exp-item">
+          <div class="exp-marker">2024</div>
+          <div class="exp-card">
+            <h3>Full Stack Developer</h3>
+            <p class="exp-company">Proyecto personal / Freelance</p>
+            <p class="exp-desc">Construí un asistente IA (RudIBot) con stack Node.js + OpenAI, UI reactiva y despliegue en Vercel.</p>
+            <div class="exp-tags">
+              <span>Node.js</span><span>OpenAI</span><span>Vercel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-marker">2023</div>
+          <div class="exp-card">
+            <h3>React.js Developer</h3>
+            <p class="exp-company">Starbucks (demo)</p>
+            <p class="exp-desc">UI responsiva, accesible y con patrones avanzados; integraciones REST y mejoras de performance.</p>
+            <div class="exp-tags">
+              <span>React</span><span>REST</span><span>Performance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-marker">2022</div>
+          <div class="exp-card">
+            <h3>React Native Developer</h3>
+            <p class="exp-company">Tesla (demo)</p>
+            <p class="exp-desc">Animaciones fluidas, layouts móviles optimizados y consumo de APIs para features en tiempo real.</p>
+            <div class="exp-tags">
+              <span>React Native</span><span>APIs</span><span>Motion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Sobre Mí -->
+  <section id="sobre-mi" class="about">
+    <div class="container">
+      <h2 class="section-title">Sobre Mí</h2>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="assets/avataaars.png" alt="Rudy Vera" class="about-avatar">
+        </div>
+        <div class="about-text">
+          <p>
+            Soy un desarrollador web apasionado por crear experiencias digitales innovadoras y funcionales.
+            Con experiencia en JavaScript, React, Node.js y Three.js, me especializo en construir aplicaciones
+            web modernas que combinan diseño atractivo con funcionalidad robusta.
+          </p>
+          <p>
+            Mi enfoque se centra en escribir código limpio, escalable y mantenible, siempre pensando en la
+            experiencia del usuario y el rendimiento de la aplicación. Me encanta aprender nuevas tecnologías
+            y desafiarme con proyectos ambiciosos.
+          </p>
+          <p>
+            Cuando no estoy programando, disfruto contribuyendo a proyectos open source, leyendo sobre
+            tendencias tech y buscando formas creativas de resolver problemas.
+          </p>
+          <div class="about-stats">
+            <div class="stat-box">
+              <h3>50+</h3>
+              <p>Proyectos completados</p>
+            </div>
+            <div class="stat-box">
+              <h3>30+</h3>
+              <p>Clientes satisfechos</p>
+            </div>
+            <div class="stat-box">
+              <h3>2+</h3>
+              <p>Años de experiencia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Skills -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2 class="section-title">Tecnologías</h2>
+      <p class="section-subtitle">Stack de desarrollo con el que trabajo</p>
+      
+      <!-- Carrusel Fila 1 -->
+      <div class="tech-carousel-wrapper">
+        <div class="tech-carousel">
+          <div class="tech-stack">
+            <div class="tech-badge" title="JavaScript">
+              <i class="fab fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-badge" title="Node.js">
+              <i class="fab fa-node-js"></i>
+              <span>Node.js</span>
+            </div>
+            <div class="tech-badge" title="HTML5">
+              <i class="fab fa-html5"></i>
+              <span>HTML5</span>
+            </div>
+            <div class="tech-badge" title="CSS3">
+              <i class="fab fa-css3-alt"></i>
+              <span>CSS3</span>
+            </div>
+            <div class="tech-badge" title="Three.js">
+              <i class="fas fa-cube"></i>
+              <span>Three.js</span>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <div class="tech-badge" title="JavaScript">
+              <i class="fab fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-badge" title="Node.js">
+              <i class="fab fa-node-js"></i>
+              <span>Node.js</span>
+            </div>
+            <div class="tech-badge" title="HTML5">
+              <i class="fab fa-html5"></i>
+              <span>HTML5</span>
+            </div>
+            <div class="tech-badge" title="CSS3">
+              <i class="fab fa-css3-alt"></i>
+              <span>CSS3</span>
+            </div>
+            <div class="tech-badge" title="Three.js">
+              <i class="fas fa-cube"></i>
+              <span>Three.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrusel Fila 2 -->
+      <div class="tech-carousel-wrapper">
+        <div class="tech-carousel carousel-reverse">
+          <div class="tech-stack">
+            <div class="tech-badge" title="Express">
+              <i class="fas fa-server"></i>
+              <span>Express</span>
+            </div>
+            <div class="tech-badge" title="Git">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+            </div>
+            <div class="tech-badge" title="GitHub">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </div>
+            <div class="tech-badge" title="REST APIs">
+              <i class="fas fa-database"></i>
+              <span>REST APIs</span>
+            </div>
+          </div>
+          <div class="tech-stack">
+            <div class="tech-badge" title="Express">
+              <i class="fas fa-server"></i>
+              <span>Express</span>
+            </div>
+            <div class="tech-badge" title="Git">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+            </div>
+            <div class="tech-badge" title="GitHub">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </div>
+            <div class="tech-badge" title="REST APIs">
+              <i class="fas fa-database"></i>
+              <span>REST APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Contacto -->
+  <section id="contacto" class="contacto">
+    <div class="container">
+      <h2 class="section-title">Trabajemos Juntos</h2>
+      <p class="contacto-text">¿Tienes un proyecto en mente? Conversemos sobre cómo puedo ayudarte.</p>
+      
+      <div class="social-links">
+        <a href="https://github.com/RudyyVera" target="_blank" class="social-btn" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/rudi-alonso-vera-2733a22b2/" target="_blank" class="social-btn" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:tuemail@example.com" class="social-btn" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://twitter.com/tu-usuario" target="_blank" class="social-btn" title="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h3 class="footer-brand">Rudy Vera</h3>
+          <p class="footer-text">Desarrollador Web apasionado por crear experiencias digitales innovadoras.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Sígueme</h4>
+          <div class="social-icons">
+            <a href="https://github.com/RudyyVera" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/rudi-alonso-vera-2733a22b2/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:tuemail@example.com"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rudy Vera. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat flotante -->
+  <div id="chat" aria-hidden="true" class="chat-container">
+    <div id="header" class="chat-header">
+      <h2>RudIBot</h2>
+      <button class="cerrar-chat" id="cerrar" type="button">✕</button>
+    </div>
+    <div id="mensajes" class="chat-messages"></div>
+    <div id="hola" class="chat-input">
+      <input id="texto" type="text" placeholder="Escribe un mensaje..." autocomplete="off">
+      <button id="btn" type="button">Enviar</button>
+    </div>
+  </div>
+
+  <button class="abre" id="chatBox" type="button" title="Abrir chat">
+    <img src="assets/image.png" alt="RudIBot" class="bot-avatar-btn" />
+  </button>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="laptop3d.js"></script>
+  <script src="script.js"></script>
+  <script src="animations.js"></script>
+  <script src="translations.js"></script>
+</body>
+</html>

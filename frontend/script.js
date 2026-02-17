@@ -16,7 +16,10 @@ const config = {
   voicePitch: 0.8,
   typeSpeed: 30,
   speakReplies: true,
-  apiUrl: "/api/chat", // Funciona en localhost y Vercel
+  apiUrl:
+    window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+      ? "http://localhost:8787/chat"
+      : "/api/chat",
   model: "openai/gpt-4o-mini",
   historyLimit: 10,
 };

@@ -3,13 +3,128 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Rudy Vera - Desarrollador Web</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="responsive-patch.css">
+  <link rel="icon" type="image/png" href="assets/favicon-modified.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="assets/favicon-modified.png?v=2">
+  <link rel="apple-touch-icon" href="assets/favicon-modified.png?v=2">
+  <link rel="stylesheet" href="style.css?v=4.1">
+  <link rel="stylesheet" href="responsive-patch.css?v=4.1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Estilos críticos para tecnologías -->
+  <style>
+    /* Forzar estilos de tecnologías */
+    .tech-carousel-wrapper {
+      width: 100% !important;
+      max-width: 900px !important;
+      margin: 0 auto !important;
+      overflow: hidden !important;
+      background: linear-gradient(90deg, transparent 0%, rgba(11, 13, 19, 1) 20%, rgba(11, 13, 19, 1) 80%, transparent 100%) !important;
+      padding: 2rem 0 !important;
+      opacity: 1 !important;
+      animation: fadeInScale 0.8s ease-out forwards !important;
+    }
+    
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    
+    .tech-carousel {
+      display: flex !important;
+      gap: 1rem !important;
+      animation: scroll 30s linear infinite !important;
+      width: fit-content !important;
+    }
+    
+    .tech-carousel.carousel-reverse {
+      animation: scrollReverse 30s linear infinite !important;
+    }
+    
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50%)); }
+    }
+    
+    @keyframes scrollReverse {
+      0% { transform: translateX(calc(-50%)); }
+      100% { transform: translateX(0); }
+    }
+    
+    .tech-stack {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      gap: 1rem !important;
+      justify-content: flex-start !important;
+      min-width: fit-content !important;
+    }
+    
+    .tech-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+      padding: 0.75rem 1.5rem !important;
+      background: rgba(28, 42, 74, 0.6) !important;
+      border: 1px solid rgba(59, 130, 246, 0.3) !important;
+      border-radius: 50px !important;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      cursor: default !important;
+      backdrop-filter: blur(10px) !important;
+      white-space: nowrap !important;
+    }
+    
+    .tech-badge:hover {
+      background: rgba(28, 42, 74, 0.9) !important;
+      border-color: rgba(96, 165, 250, 0.7) !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 8px 25px rgba(96, 165, 250, 0.2), 0 0 15px rgba(96, 165, 250, 0.1) !important;
+    }
+    
+    .tech-badge i {
+      font-size: 1.5rem !important;
+      color: #60a5fa !important;
+      transition: transform 0.3s ease !important;
+    }
+    
+    .tech-badge:hover i {
+      transform: scale(1.15) !important;
+    }
+    
+    .tech-badge span {
+      font-size: 0.95rem !important;
+      font-weight: 500 !important;
+      color: #e5e7eb !important;
+      letter-spacing: 0.3px !important;
+    }
+    
+    .tech-badge:has(.fa-node-js) i { color: #68a063 !important; }
+    .tech-badge:has(.fa-js) i { color: #f7df1e !important; }
+    .tech-badge:has(.fa-html5) i { color: #e34c26 !important; }
+    .tech-badge:has(.fa-css3-alt) i { color: #264de4 !important; }
+    .tech-badge:has(.fa-git-alt) i { color: #f05032 !important; }
+    .tech-badge:has(.fa-github) i { color: #ffffff !important; }
+    
+    /* Centrar subtítulo */
+    .section-subtitle {
+      text-align: center !important;
+      color: #b4b9c2 !important;
+      font-size: 1.1rem !important;
+      margin-bottom: 3rem !important;
+      display: block !important;
+    }
+    
+    /* Mejorar título de sección */
+    .section-title {
+      text-align: center !important;
+      color: #f3f4f6 !important;
+    }
+  </style>
   
   <!-- Import map para Three.js -->
   <script type="importmap">
@@ -129,12 +244,13 @@
             </div>
           </div>
           <div class="project-content">
-            <h3>E-comm  erce</h3>
-            <p>Estoy trabajando en algo increíble. Mantente atento para ver más detalles pronto.</p>
+            <h3>Tech Store</h3>
+            <p>Tienda online de componentes y gadgets tech construida con WordPress/WooCommerce, personalizada con código PHP, child themes y optimizaciones de rendimiento.</p>
             <div class="project-tech-tags">
-              <span class="tech-tag react" title="React"><i class="fab fa-react"></i></span>
-              <span class="tech-tag ts" title="TypeScript"><i class="fab fa-square-js"></i></span>
-              <span class="tech-tag tailwind" title="Tailwind CSS"><i class="fas fa-wind"></i></span>
+              <span class="tech-tag php" title="PHP"><i class="fab fa-php"></i></span>
+              <span class="tech-tag wordpress" title="WordPress"><i class="fab fa-wordpress"></i></span>
+              <span class="tech-tag js" title="JavaScript"><i class="fab fa-js"></i></span>
+              <span class="tech-tag mysql" title="MySQL"><i class="fas fa-database"></i></span>
             </div>
             <div class="project-actions">
               <button class="project-action-btn disabled" disabled>
@@ -171,21 +287,21 @@
         </div>
 
         <div class="exp-item">
-          <div class="exp-marker">2023</div>
+          <div class="exp-marker">2025</div>
           <div class="exp-card">
-            <h3>React.js Developer</h3>
-            <p class="exp-company">Starbucks (demo)</p>
-            <p class="exp-desc">UI responsiva, accesible y con patrones avanzados; integraciones REST y mejoras de performance.</p>
+            <h3>Desarrollador Web</h3>
+            <p class="exp-company">Centro de Cómputo — Prácticas</p>
+            <p class="exp-desc">Desarrollo de e-commerce con WordPress/WooCommerce implementando código PHP personalizado para funcionalidades específicas, custom hooks y filters, integración de APIs de pasarela de pagos, desarrollo de child themes con HTML/CSS/JavaScript, y optimización de queries para mejorar el rendimiento del sitio.</p>
             <div class="exp-tags">
-              <span>React</span><span>REST</span><span>Performance</span>
+              <span>PHP</span><span>WordPress</span><span>WooCommerce</span><span>JavaScript</span><span>MySQL</span>
             </div>
           </div>
         </div>
 
         <div class="exp-item">
-          <div class="exp-marker">2022</div>
+          <div class="exp-marker">2024</div>
           <div class="exp-card">
-            <h3>React Native Developer</h3>
+            <h3>React Native hola</h3>
             <p class="exp-company">Tesla (demo)</p>
             <p class="exp-desc">Animaciones fluidas, layouts móviles optimizados y consumo de APIs para features en tiempo real.</p>
             <div class="exp-tags">
@@ -207,33 +323,14 @@
         </div>
         <div class="about-text">
           <p>
-            Soy un desarrollador web apasionado por crear experiencias digitales innovadoras y funcionales.
-            Con experiencia en JavaScript, React, Node.js y Three.js, me especializo en construir aplicaciones
-            web modernas que combinan diseño atractivo con funcionalidad robusta.
+            Soy desarrollador web junior, recién egresado y motivado por aprender. Me gusta crear soluciones funcionales y sencillas, principalmente con JavaScript, Node.js y WordPress.
           </p>
           <p>
-            Mi enfoque se centra en escribir código limpio, escalable y mantenible, siempre pensando en la
-            experiencia del usuario y el rendimiento de la aplicación. Me encanta aprender nuevas tecnologías
-            y desafiarme con proyectos ambiciosos.
+            Busco escribir código claro y mejorar cada día. Disfruto colaborar, adaptarme a nuevos retos y aportar ideas frescas a los proyectos.
           </p>
           <p>
-            Cuando no estoy programando, disfruto contribuyendo a proyectos open source, leyendo sobre
-            tendencias tech y buscando formas creativas de resolver problemas.
+            En mi tiempo libre exploro nuevas tecnologías y participo en comunidades de desarrollo.
           </p>
-          <div class="about-stats">
-            <div class="stat-box">
-              <h3>50+</h3>
-              <p>Proyectos completados</p>
-            </div>
-            <div class="stat-box">
-              <h3>30+</h3>
-              <p>Clientes satisfechos</p>
-            </div>
-            <div class="stat-box">
-              <h3>2+</h3>
-              <p>Años de experiencia</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

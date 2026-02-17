@@ -2,14 +2,28 @@ import 'dotenv/config';
 import express from 'express';
 import fetch from 'node-fetch';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static('../frontend')); // Servir archivos estáticos desde frontend
+
+// Deshabilitar caché
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+  next();
+});
+
+app.use(express.static(path.join(__dirname, '../frontend'))); // Servir archivos estáticos desde frontend
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: '../frontend' });
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 app.post('/chat', async (req, res) => {
