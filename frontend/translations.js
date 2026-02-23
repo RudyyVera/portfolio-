@@ -13,6 +13,7 @@ const translations = {
     // Hero
     hero_greeting: "Hola, soy",
     hero_subtitle: "Desarrollador Web & Creador de Experiencias Digitales",
+    hero_download_cv: "Descargar CV",
     
     // Proyectos
     projects_title: "Proyectos Destacados",
@@ -82,6 +83,7 @@ const translations = {
     // Hero
     hero_greeting: "Hi, I'm",
     hero_subtitle: "Web Developer & Digital Experiences Creator",
+    hero_download_cv: "Download CV",
     
     // Projects
     projects_title: "Featured Projects",
@@ -160,6 +162,21 @@ function changeLanguage(lang) {
     heroH1.innerHTML = `${t.hero_greeting} <span class="gradient-text">${name}</span>`;
   }
   document.querySelector('.hero-subtitle').textContent = t.hero_subtitle;
+  
+  // Botón Descargar CV
+  const downloadBtn = document.getElementById('download-cv-btn');
+  if (downloadBtn) {
+    const span = downloadBtn.querySelector('span');
+    if (span) span.textContent = t.hero_download_cv;
+    // Cambiar el atributo download según el idioma
+    if (lang === 'en') {
+      downloadBtn.setAttribute('download', 'Rudy-Vera-Resume');
+      downloadBtn.setAttribute('title', 'Download Resume');
+    } else {
+      downloadBtn.setAttribute('download', 'CV-Rudy-Vera');
+      downloadBtn.setAttribute('title', 'Descargar CV');
+    }
+  }
   
   // Proyectos
   document.querySelector('#proyectos .section-title').textContent = t.projects_title;
