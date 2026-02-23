@@ -8,6 +8,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Verificar que la API key esté cargada
+if (!process.env.OPENROUTER_API_KEY) {
+  console.error('❌ ERROR: OPENROUTER_API_KEY no está en las variables de entorno. Revisa el archivo .env');
+  process.exit(1);
+}
+
+console.log('✅ OPENROUTER_API_KEY cargada correctamente');
+
 const app = express();
 app.use(cors());
 app.use(express.json());

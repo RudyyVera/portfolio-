@@ -103,12 +103,12 @@ const translations = {
     exp1_role: "Full Stack Developer",
     exp1_company: "Personal Project / Freelance",
     exp1_desc: "Built an AI assistant (RudIBot) with Node.js + OpenAI stack, reactive UI and Vercel deployment.",
-    exp2_role: "React.js Developer",
-    exp2_company: "Starbucks (demo)",
-    exp2_desc: "Responsive, accessible UI with advanced patterns; REST integrations and performance improvements.",
-    exp3_role: "React Native Developer",
-    exp3_company: "Tesla (demo)",
-    exp3_desc: "Smooth animations, optimized mobile layouts and API consumption for real-time features.",
+    exp2_role: "WordPress | Internship at Centro Cómputo SAC (3 months, 2025)",
+    exp2_company: "Custom WooCommerce for tech sales",
+    exp2_desc: "Developed online store with WooCommerce and custom code for technology sales.",
+    exp3_role: "Internship at UNI (National Engineering University) (3 months, 2024)",
+    exp3_company: "Angular + Laravel for credentials system",
+    exp3_desc: "Creation of internal credentials system for student administration using Angular and Laravel.",
     
     // About
     about_title: "About Me",
