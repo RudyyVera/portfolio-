@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 console.log('🚀 laptop3d.js cargado');
 
@@ -24,46 +25,36 @@ function initLaptop3D() {
 
   // Escena
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0b0d13);
-  scene.fog = new THREE.Fog(0x0b0d13, 20, 150);
+  scene.background = null; // Fondo transparente
+  // Sin fog
 
   // Cámara - Más alejada para ver todo el modelo
-  const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
-  camera.position.set(2, 2.2, 9);
+  const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 1000);
+  camera.position.set(0, 2, 12); // Más centrada y alejada
   camera.lookAt(0, 0, 0);
 
   // Renderer
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(width, height);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  // Controles de órbita
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.minDistance = 6;
+  controls.maxDistance = 20;
+  controls.enablePan = false;
+  controls.target.set(0, 0, 0);
+  controls.update();
   container.appendChild(renderer.domElement);
   
   console.log('✅ Renderer creado y agregado al DOM');
 
-  // Cubo de fallback para ver algo mientras carga
-  const testCube = new THREE.Mesh(
-    new THREE.BoxGeometry(1.2, 1.2, 1.2),
-    new THREE.MeshStandardMaterial({ color: 0x60a5fa })
-  );
-  testCube.position.set(0, 0.6, 0);
-  testCube.castShadow = true;
-  testCube.receiveShadow = true;
-  scene.add(testCube);
-  console.log('🔷 Cubo de fallback agregado');
-
   // Suelo simple
-  const planeGeometry = new THREE.PlaneGeometry(20, 20);
-  const planeMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0x0b0d13,
-    roughness: 0.8 
-  });
-  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-  plane.rotation.x = -Math.PI / 2;
-  plane.position.y = -1;
-  plane.receiveShadow = true;
-  scene.add(plane);
+  // Eliminar suelo para vista libre
 
   // Luces
   const ambientLight = new THREE.AmbientLight(0xffffff, 1.8);
@@ -97,10 +88,10 @@ function initLaptop3D() {
   const loader = new GLTFLoader();
   let laptop;
 
-  console.log('Cargando modelo orthographic_bedroom.glb...');
+  console.log('Cargando modelo iphone_17_pro_max.glb...');
   
   loader.load(
-    './assets/models/orthographic_bedroom.glb',
+    './assets/models/iphone_17_pro_max.glb',
     (gltf) => {
       laptop = gltf.scene;
       laptop.castShadow = true;
@@ -109,8 +100,25 @@ function initLaptop3D() {
         child.castShadow = true;
         child.receiveShadow = true;
         if (child.material) {
-          child.material.envMapIntensity = 1;
+          // Efecto general para todo el modelo
+          child.material.envMapIntensity = 2;
+          child.material.metalness = 0.7;
+          child.material.roughness = 0.15;
+          child.material.clearcoat = 0.6;
+          child.material.clearcoatRoughness = 0.1;
           child.material.needsUpdate = true;
+          // Efecto vidrio para cámaras
+          if (child.name && child.name.toLowerCase().includes('camera')) {
+            child.material.color.set(0x1a2a3a); // azul oscuro
+            child.material.metalness = 1;
+            child.material.roughness = 0.05;
+            child.material.clearcoat = 1;
+            child.material.clearcoatRoughness = 0.05;
+            child.material.transparent = true;
+            child.material.opacity = 0.85;
+            child.material.reflectivity = 0.9;
+            child.material.needsUpdate = true;
+          }
         }
       });
 
@@ -126,14 +134,21 @@ function initLaptop3D() {
 
       // Escalar a un tamaño objetivo
       const maxDim = Math.max(size.x, size.y, size.z);
-      const targetSize = 8; // ancho objetivo en escena
+      const targetSize = 6; // tamaño óptimo y centrado
       if (maxDim > 0) {
         const scale = targetSize / maxDim;
         laptop.scale.setScalar(scale);
       }
 
       // Colocar sobre el piso
-      laptop.position.y -= size.y * 0.5 * laptop.scale.y;
+      // Centrar verticalmente el modelo
+      laptop.position.y -= size.y * 0.18 * laptop.scale.y; // Centrado, sin sobrepasar el header
+
+      // Rotación inicial para vista de perfil
+      if (laptop) {
+        laptop.rotation.y = Math.PI / 2; // De perfil al iniciar
+        laptop.rotation.x = 0.15; // Leve inclinación
+      }
 
       scene.add(laptop);
       console.log('✅ Modelo 3D cargado y ajustado');
@@ -148,36 +163,18 @@ function initLaptop3D() {
   );
 
   // Interactividad
-  let mouseX = 0;
-  let mouseY = 0;
-  let targetRotationX = 0;
-  let targetRotationY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    
-    targetRotationY = mouseX * 0.4;
-    targetRotationX = mouseY * 0.3;
-  });
 
   // Animación
+  let autoRotation = 0;
   function animate() {
     requestAnimationFrame(animate);
-
+    controls.update();
     if (laptop) {
-      // Oculta cubo de fallback cuando cargue el modelo
-      testCube.visible = false;
-
-      laptop.rotation.y += 0.003;
-      laptop.rotation.y += (targetRotationY - laptop.rotation.y) * 0.05;
-      laptop.rotation.x += (targetRotationX - laptop.rotation.x) * 0.05;
-    } else {
-      // Mientras no haya modelo, rota el cubo para ver algo
-      testCube.rotation.y += 0.01;
-      testCube.rotation.x += 0.005;
+      autoRotation += 0.005;
+      // Rotación elíptica/curva
+      laptop.rotation.y = Math.PI / 2 + Math.sin(autoRotation) * 1.1; // de trasera a delantera
+      laptop.rotation.x = 0.15 + Math.cos(autoRotation) * 0.22; // inclinación suave
     }
-
     renderer.render(scene, camera);
   }
 

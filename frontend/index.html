@@ -113,7 +113,7 @@
     /* Centrar subtítulo */
     .section-subtitle {
       text-align: center !important;
-      color: #b4b9c2 !important;
+      color: var(--text-primary);
       font-size: 1.1rem !important;
       margin-bottom: 3rem !important;
       display: block !important;
@@ -122,7 +122,7 @@
     /* Mejorar título de sección */
     .section-title {
       text-align: center !important;
-      color: #f3f4f6 !important;
+      color: var(--text-primary);
     }
   </style>
   
@@ -136,7 +136,7 @@
     }
   </script>
 </head>
-<body>
+<body class="light-theme">
   <!-- Mouse spotlight effect -->
   <div class="mouse-spotlight"></div>
   
@@ -212,6 +212,7 @@
       
       <div class="projects-bento">
         
+
         <!-- Proyecto 1: RudIBot -->
         <div class="project-bento-card">
           <div class="project-preview">
@@ -242,28 +243,31 @@
           </div>
         </div>
 
-        <!-- Proyecto 2: Próximamente -->
-        <div class="project-bento-card coming-soon">
-          <div class="project-preview coming">
-            <div class="coming-content">
-              <i class="fas fa-code"></i>
-              <span>Coming Soon</span>
+        <!-- Proyecto 2: E-commerce IA Agent -->
+        <div class="project-bento-card">
+          <div class="project-preview">
+            <img src="assets/ecommerce.png" alt="E-commerce IA Agent Preview">
+            <div class="project-overlay">
+              <i class="fas fa-external-link-alt"></i>
             </div>
           </div>
           <div class="project-content">
-            <h3>Tech Store</h3>
-            <p>Tienda online de componentes y gadgets tech construida con WordPress/WooCommerce, personalizada con código PHP, child themes y optimizaciones de rendimiento.</p>
+            <h3>E-commerce IA Agent</h3>
+            <p>E-commerce inteligente con IA Agent, recomendaciones personalizadas y chatbot integrado.</p>
             <div class="project-tech-tags">
-              <span class="tech-tag php" title="PHP"><i class="fab fa-php"></i></span>
-              <span class="tech-tag wordpress" title="WordPress"><i class="fab fa-wordpress"></i></span>
               <span class="tech-tag js" title="JavaScript"><i class="fab fa-js"></i></span>
-              <span class="tech-tag mysql" title="MySQL"><i class="fas fa-database"></i></span>
+              <span class="tech-tag mongodb" title="MongoDB"><i class="fas fa-leaf"></i></span>
+              <span class="tech-tag render" title="Render"><i class="fas fa-cloud"></i></span>
             </div>
             <div class="project-actions">
-              <button class="project-action-btn disabled" disabled>
-                <i class="fas fa-clock"></i>
-                <span>En Desarrollo</span>
-              </button>
+              <a href="https://rudi-smart-shop.vercel.app/" target="_blank" class="project-action-btn demo">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Abrir Demo</span>
+              </a>
+              <a href="https://github.com/RudyyVera/RudiSmartShop" target="_blank" class="project-action-btn github">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
             </div>
           </div>
         </div>
